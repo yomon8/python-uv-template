@@ -1,0 +1,50 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "ruff.enable": true,
+                "ruff.organizeImports": true,
+                "ruff.importStrategy": "useBundled",
+                "ruff.interpreter": [
+                    "/usr/local/bin/python"
+                ],
+                "[python]": {
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": "explicit",
+                        "source.fixAll": "never"
+                    },
+                    "editor.defaultFormatter": "charliermarsh.ruff"
+                }
+            },
+            "extensions": [
+                // Docs
+                "hediet.vscode-drawio",
+                "yzhang.markdown-all-in-one",
+                "bierner.github-markdown-preview",
+                // Python
+                "ms-python.python",
+                "ms-python.mypy-type-checker",
+                "charliermarsh.ruff",
+                "njpwerner.autodocstring",
+                "tamasfe.even-better-toml",
+                // DevTools
+                "Gruntfuggly.todo-tree",
+                "mhutchie.git-graph",
+                "redhat.vscode-xml",
+                "eamodio.gitlens",
+                "donjayamanne.githistory",
+                "GitHub.copilot",
+                "GitHub.copilot-chat"
+            ]
+        }
+    },
+    "remoteUser": "vscode"
+}
