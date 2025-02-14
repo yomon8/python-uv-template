@@ -1,5 +1,4 @@
-ARG VARIANT="1-3.12-bookworm"
-FROM mcr.microsoft.com/vscode/devcontainers/python:${VARIANT}
+FROM mcr.microsoft.com/vscode/devcontainers/python:1-3.12-bookworm
 
 RUN apt update && apt install -y \
     bash-completion \
