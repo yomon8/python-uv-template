@@ -11,6 +11,4 @@ RUN wget -qO- https://astral.sh/uv/install.sh | sh
 
 ENV CARGO_HOME="/opt/.cargo/bin"
 RUN mkdir -p $CARGO_HOME
-RUN mv /root/.local/bin/uv $CARGO_HOME/uv
-ENV PATH="$CARGO_HOME/:$PATH"
-RUN chown -R vscode $CARGO_HOME
+RUN mv /root/.local/bin/uv /usr/local/bin/
