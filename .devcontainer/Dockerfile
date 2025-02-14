@@ -1,5 +1,9 @@
-ARG VARIANT="1-3.12-bookworm"
-FROM mcr.microsoft.com/vscode/devcontainers/python:${VARIANT}
+FROM ghcr.io/astral-sh/uv:0.5.31 AS uv
+
+FROM mcr.microsoft.com/vscode/devcontainers/python:1-3.12-bookworm
+
+RUN --mount=from=uv,source=/uv,target=/bin/uv \
+    cp /bin/uv /usr/local/bin/uv
 
 RUN apt update && apt install -y \
     bash-completion \
@@ -7,11 +11,3 @@ RUN apt update && apt install -y \
     wget \
     fzf \
     ca-certificates
-
-RUN wget -qO- https://astral.sh/uv/install.sh | sh
-
-ENV CARGO_HOME="/opt/.cargo/bin"
-RUN mkdir -p $CARGO_HOME
-RUN mv /root/.local/bin/uv $CARGO_HOME/uv
-ENV PATH="$CARGO_HOME/:$PATH"
-RUN chown -R vscode $CARGO_HOME
