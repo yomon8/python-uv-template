@@ -1,14 +1,15 @@
-FROM mcr.microsoft.com/vscode/devcontainers/python:1-3.12-bookworm
+ARG UV_VERSION="0.6.3"
+# ref: variant list https://mcr.microsoft.com/v2/devcontainers/base/tags/list
+ARG VARIANT="1.2.3-ubuntu24.04" 
+FROM ghcr.io/astral-sh/uv:${UV_VERSION} as uv_source
+FROM mcr.microsoft.com/vscode/devcontainers/base:${VARIANT}
 
 RUN apt update && apt install -y \
     bash-completion \
     dnsutils \
     wget \
-    fzf \
     ca-certificates
 
-RUN wget -qO- https://astral.sh/uv/install.sh | sh
-
-ENV CARGO_HOME="/opt/.cargo/bin"
-RUN mkdir -p $CARGO_HOME
-RUN mv /root/.local/bin/uv /usr/local/bin/
+# install uv
+COPY --from=uv_source /uv /uvx /bin/
+RUN echo 'eval "$(uv generate-shell-completion bash)"' >> ~vscode/.bashrc
