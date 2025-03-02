@@ -6,6 +6,9 @@
         "ghcr.io/devcontainers/features/git:1": {},
         "ghcr.io/devcontainers-extra/features/fzf:1": {}
     },
+     "mounts": [
+        "source=${localEnv:HOME}/.ssh/,target=/home/node/.ssh/,type=bind,consistency=cached"
+    ],
     "customizations": {
         "vscode": {
             "settings": {
